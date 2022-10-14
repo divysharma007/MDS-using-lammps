@@ -7,29 +7,29 @@ atom_style		full
 pair_style		lj/cut 10.0
 bond_style		harmonic
 angle_style 	harmonic
-read_data		pre_minimize.data
+read_data		crosslinked.data
 
 #output
 
 thermo			100
 thermo_style	custom step temp pe press vol lx density
-dump			1 all custom 100 before_cross_linking.lammpstrj id type x y z
+dump			1 all custom 100 after_cross_linking.lammpstrj id type x y z
 
 #intial minimization
 minimize		1.0e-5 1.0e-5 10000 10000
 
 timestep 1
-# nvt for 200 ps
+# nvt for 500 ps
 fix			1 all nvt temp 300 300 100
-run			200000
+run			500000
 unfix			1
 
-# npt for 1000ps
+# npt for 250ps
 fix			1 all npt temp 300 300 100 iso 1 1 100
-run			1000000
+run			250000
 unfix			1
 #final 
-write_data		before_cross_linking.data
+write_data		after_cross_linking.data
 
 #parameter
 neighbor		2.0 bin
