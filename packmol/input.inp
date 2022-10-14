@@ -1,0 +1,13 @@
+tolerance 3.5
+output PVA4_GA20_latest.pdb
+filetype pdb
+
+structure Polyvinylalcohol.pdb
+  number 4
+  inside cube 0. 0. 0. 90.
+end structure
+
+structure Glutaraldehyde.pdb
+  number 20
+  inside cube 0. 0. 0. 90.
+end structure 
