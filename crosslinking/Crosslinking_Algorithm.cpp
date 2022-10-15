@@ -53,15 +53,15 @@ float dist(struct atom a1, struct atom a2){
     xd = a1.x - a2.x;
     yd = a1.y - a2.y;
     zd = a1.z - a2.z;
-    float d = 0;
-    if(abs(xd) > 15.57115){
-        xd = xd - (sgn(xd)*31.1423);
+    float d = 0,h=-29.8174203697059+60.28957963029227;
+    if(2*abs(xd) >h){
+        xd = xd - (sgn(xd)*h);
     }
-    if(abs(yd) > 15.57115){
-        yd = yd - (sgn(yd)*31.1423);
+    if(2*abs(yd) >h){
+        yd = yd - (sgn(yd)*h);
     }
-    if(abs(xd) > 15.57115){
-        zd = zd - (sgn(zd)*31.1423);
+    if(2*abs(xd) > h){
+        zd = zd - (sgn(zd)*h);
     }
     d = (xd)*(xd)+(yd)*(yd)+(zd)*(zd);
     return d;
