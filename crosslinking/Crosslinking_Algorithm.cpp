@@ -7,6 +7,20 @@
 using namespace std;
 
 //Dataformat Declaration
+void printTypes(set<int>& s){
+    for(auto i=s.begin(); i != s.end(); i++){
+        cout<<*i<<" ";
+    }cout<<endl;
+}
+void printAllTypes(set<int>& a,set<int>& b,set<int>& c){
+    cout<<"atoms:\n";
+    printTypes(a);
+    cout<<"bonds:\n";
+    printTypes(b);
+    cout<<"angles:\n";
+    printTypes(c);
+
+}
 struct atom{
     int atomNo;
     int sec;
@@ -60,7 +74,7 @@ float dist(struct atom a1, struct atom a2){
     if(2*abs(yd) >h){
         yd = yd - (sgn(yd)*h);
     }
-    if(2*abs(xd) > h){
+    if(2*abs(zd) > h){
         zd = zd - (sgn(zd)*h);
     }
     d = (xd)*(xd)+(yd)*(yd)+(zd)*(zd);
@@ -779,7 +793,7 @@ int main(){
     }
     bout.close();
 
-    bout.open("PVA4_GA20_CROSSLINKED.data");
+    bout.open("PVA4_GA20_CROSSLINKED_correct.data");
     bout<<"Atoms"<<endl;
     bout<<""<<endl;
     for(int i=0;i<atoms.size();i++){
@@ -801,6 +815,7 @@ int main(){
 
     //Printing Number of Crosslinks
     cout<<"Single Linked : "<<c1<<"\nDouble Linked : "<<c2<<endl;
+    printAllTypes(atype,btype,agtype);
 
 
 }

@@ -38,14 +38,14 @@ float dist(struct atom a1, struct atom a2) {
   xd = a1.x - a2.x;
   yd = a1.y - a2.y;
   zd = a1.z - a2.z;
-  float d = 0, h = -29.8174203697059 + 60.28957963029227;
+  float d = 0, h = -29.8174203697059+60.28957963029227;
   if (2 * abs(xd) > h) {
     xd = xd - (sgn(xd) * h);
   }
   if (2 * abs(yd) > h) {
     yd = yd - (sgn(yd) * h);
   }
-  if (2 * abs(xd) > h) {
+  if (2 * abs(zd) > h) {
     zd = zd - (sgn(zd) * h);
   }
   d = (xd) * (xd) + (yd) * (yd) + (zd) * (zd);
