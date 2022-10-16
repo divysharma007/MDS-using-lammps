@@ -6,5 +6,5 @@ Angles 25 5800
 Single Linked : 40
 Double Linked : 40
 distance: 332.231 cnt: 80 Average: 4.15289
-distance: 118.384 cnt: 80 Average: 1.4798
-64.366%
+distance: 114.927 cnt: 80 Average: 1.43658
+65.40%

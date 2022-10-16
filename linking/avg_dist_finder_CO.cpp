@@ -34,7 +34,7 @@ float dist(struct atom a1, struct atom a2){
     xd = a1.x - a2.x;
     yd = a1.y - a2.y;
     zd = a1.z - a2.z;
-    float d = 0,h=-29.73888410076014+60.36811589923866;
+    float d = 0,h=-30.222448031590186+59.884551968408104;
     if(2*abs(xd) > h){
         xd = xd - (sgn(xd)*h);
     }
