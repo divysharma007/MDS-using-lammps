@@ -1,0 +1,10 @@
+working
+Data Type Value
+Atoms 13 2988
+Bonds 13 3044
+Angles 25 5800
+Single Linked : 40
+Double Linked : 40
+distance: 332.231 cnt: 80 Average: 4.15289
+distance: 118.384 cnt: 80 Average: 1.4798
+64.366%
