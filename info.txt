@@ -251,3 +251,14 @@ distance: 113.583 cnt: 79 Average: 1.43775
 
 wikipedia
 paraffinic C–O bonds are in the range of 143 pm
+
+
+
+2862 751 4.0824
+FOUND 2862 4.53676
+
+2839 1915 4.49314
+1 O atom within cutoff 1915 4.1793 # taken
+2 O atom within cutoff 14 4.93449 # taken
+3 O atom within cutoff 751 4.53676 # formed bond
+2862 nearest distance 4.1793
