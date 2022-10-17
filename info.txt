@@ -56,7 +56,7 @@ correct-
 7 321
 8 400
 9 321 # O1 converted to 14 ( O1 forming bonds with c of glutaldehyde)
-10 0 #c1 ( converted to type 14/15)
+10 0 #c1 ( converted to type 16/15)
 11 60
 12 160
 13 0 #o
@@ -246,5 +246,8 @@ correct
 
 after cross linking before nvt npt
 distance: 329.615 cnt: 79 Average: 4.17235
-distance: 119.254 cnt: 79 Average: 1.50955
-63.82%
+distance: 113.583 cnt: 79 Average: 1.43775
+65.54%
+
+wikipedia
+paraffinic C–O bonds are in the range of 143 pm
