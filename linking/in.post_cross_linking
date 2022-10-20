@@ -13,7 +13,7 @@ read_data		crosslinked.data
 
 thermo			100
 thermo_style	custom step temp pe press vol lx density
-dump			1 all custom 100 after_cross_linking_correct.lammpstrj id type x y z
+dump			1 all custom 100 after_cross_linking_correct_2.lammpstrj id type x y z
 
 #intial minimization
 minimize		1.0e-5 1.0e-5 10000 10000
@@ -29,7 +29,7 @@ fix			1 all npt temp 300 300 100 iso 1 1 100
 run			250000
 unfix			1
 #final 
-write_data		after_cross_linking_correct.data
+write_data		after_cross_linking_correct_2.data
 
 #parameter
 neighbor		2.0 bin

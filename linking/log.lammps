@@ -32,14 +32,14 @@ Finding 1-2 1-3 1-4 neighbors ...
      7 = max # of 1-3 neighbors
     16 = max # of 1-4 neighbors
     20 = max # of special neighbors
-  special bonds CPU = 0.009 seconds
-  read_data CPU = 0.079 seconds
+  special bonds CPU = 0.005 seconds
+  read_data CPU = 0.054 seconds
 
 #output
 
 thermo			100
 thermo_style	custom step temp pe press vol lx density
-dump			1 all custom 100 after_cross_linking_correctm.lammpstrj id type x y z
+dump			1 all custom 100 after_cross_linking_correct_2.lammpstrj id type x y z
 
 #intial minimization
 minimize		1.0e-5 1.0e-5 10000 10000
@@ -78,9 +78,9 @@ Per MPI rank memory allocation (min/avg/max) = 26.67 | 26.67 | 26.67 Mbytes
       1500   0             -939.94291     -3300.5059      28734.809      30.629232      1.0928246    
       1600   0             -942.18638     -3409.2198      28734.809      30.629232      1.0928246    
       1651   0             -943.1009      -3419.715       28734.809      30.629232      1.0928246    
-Loop time of 96.8226 on 1 procs for 1651 steps with 2988 atoms
+Loop time of 63.132 on 1 procs for 1651 steps with 2988 atoms
 
-99.3% CPU use with 1 MPI tasks x 1 OpenMP threads
+99.7% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 Minimization stats:
   Stopping criterion = energy tolerance
@@ -94,13 +94,13 @@ Minimization stats:
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 92.038     | 92.038     | 92.038     |   0.0 | 95.06
-Bond    | 1.933      | 1.933      | 1.933      |   0.0 |  2.00
-Neigh   | 2.0814     | 2.0814     | 2.0814     |   0.0 |  2.15
-Comm    | 0.34253    | 0.34253    | 0.34253    |   0.0 |  0.35
-Output  | 0.13692    | 0.13692    | 0.13692    |   0.0 |  0.14
+Pair    | 59.936     | 59.936     | 59.936     |   0.0 | 94.94
+Bond    | 1.2705     | 1.2705     | 1.2705     |   0.0 |  2.01
+Neigh   | 1.4016     | 1.4016     | 1.4016     |   0.0 |  2.22
+Comm    | 0.23894    | 0.23894    | 0.23894    |   0.0 |  0.38
+Output  | 0.092335   | 0.092335   | 0.092335   |   0.0 |  0.15
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
-Other   |            | 0.2906     |            |       |  0.30
+Other   |            | 0.1929     |            |       |  0.31
 
 Nlocal:           2988 ave        2988 max        2988 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -5125,21 +5125,21 @@ Per MPI rank memory allocation (min/avg/max) = 24.42 | 24.42 | 24.42 Mbytes
     501500   297.32789      1368.4264     -3243.6473      28734.809      30.629232      1.0928246    
     501600   301.912        1369.2397     -3693.3193      28734.809      30.629232      1.0928246    
     501651   305.36128      1350.0128     -972.86868      28734.809      30.629232      1.0928246    
-Loop time of 9568.72 on 1 procs for 500000 steps with 2988 atoms
+Loop time of 6686.1 on 1 procs for 500000 steps with 2988 atoms
 
-Performance: 4.515 ns/day, 5.316 hours/ns, 52.254 timesteps/s
-99.6% CPU use with 1 MPI tasks x 1 OpenMP threads
+Performance: 6.461 ns/day, 3.715 hours/ns, 74.782 timesteps/s
+99.9% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 8213.4     | 8213.4     | 8213.4     |   0.0 | 85.84
-Bond    | 249.14     | 249.14     | 249.14     |   0.0 |  2.60
-Neigh   | 961.14     | 961.14     | 961.14     |   0.0 | 10.04
-Comm    | 57.927     | 57.927     | 57.927     |   0.0 |  0.61
-Output  | 39.803     | 39.803     | 39.803     |   0.0 |  0.42
-Modify  | 32.427     | 32.427     | 32.427     |   0.0 |  0.34
-Other   |            | 14.9       |            |       |  0.16
+Pair    | 5771.1     | 5771.1     | 5771.1     |   0.0 | 86.32
+Bond    | 163.98     | 163.98     | 163.98     |   0.0 |  2.45
+Neigh   | 654.17     | 654.17     | 654.17     |   0.0 |  9.78
+Comm    | 35.792     | 35.792     | 35.792     |   0.0 |  0.54
+Output  | 28.741     | 28.741     | 28.741     |   0.0 |  0.43
+Modify  | 23.003     | 23.003     | 23.003     |   0.0 |  0.34
+Other   |            | 9.27       |            |       |  0.14
 
 Nlocal:           2988 ave        2988 max        2988 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -7664,21 +7664,21 @@ Per MPI rank memory allocation (min/avg/max) = 24.42 | 24.42 | 24.42 Mbytes
     751500   304.23348      1334.5408     -511.75099      26087.931      29.65832       1.2037025    
     751600   305.45592      1278.8108      2049.9161      26044.455      29.641835      1.2057118    
     751651   296.64116      1290.9831      773.52109      26097.918      29.662104      1.2032419    
-Loop time of 4972.32 on 1 procs for 250000 steps with 2988 atoms
+Loop time of 3711.82 on 1 procs for 250000 steps with 2988 atoms
 
-Performance: 4.344 ns/day, 5.525 hours/ns, 50.278 timesteps/s
-99.1% CPU use with 1 MPI tasks x 1 OpenMP threads
+Performance: 5.819 ns/day, 4.124 hours/ns, 67.352 timesteps/s
+99.8% CPU use with 1 MPI tasks x 1 OpenMP threads
 
 MPI task timing breakdown:
 Section |  min time  |  avg time  |  max time  |%varavg| %total
 ---------------------------------------------------------------
-Pair    | 4168.4     | 4168.4     | 4168.4     |   0.0 | 83.83
-Bond    | 141.46     | 141.46     | 141.46     |   0.0 |  2.84
-Neigh   | 566.33     | 566.33     | 566.33     |   0.0 | 11.39
-Comm    | 29.012     | 29.012     | 29.012     |   0.0 |  0.58
-Output  | 18.581     | 18.581     | 18.581     |   0.0 |  0.37
-Modify  | 40.254     | 40.254     | 40.254     |   0.0 |  0.81
-Other   |            | 8.241      |            |       |  0.17
+Pair    | 3143.1     | 3143.1     | 3143.1     |   0.0 | 84.68
+Bond    | 97.005     | 97.005     | 97.005     |   0.0 |  2.61
+Neigh   | 407.68     | 407.68     | 407.68     |   0.0 | 10.98
+Comm    | 15.837     | 15.837     | 15.837     |   0.0 |  0.43
+Output  | 14.243     | 14.243     | 14.243     |   0.0 |  0.38
+Modify  | 29.471     | 29.471     | 29.471     |   0.0 |  0.79
+Other   |            | 4.494      |            |       |  0.12
 
 Nlocal:           2988 ave        2988 max        2988 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
@@ -7694,10 +7694,10 @@ Neighbor list builds = 12052
 Dangerous builds = 0
 unfix			1
 #final
-write_data		after_cross_linking_correctm.data
+write_data		after_cross_linking_correct_2.data
 System init for write_data ...
 Generated 153 of 153 mixed pair_coeff terms from geometric mixing rule
 
 #parameter
 neighbor		2.0 bin
-Total wall time: 4:03:58
+Total wall time: 2:54:21
