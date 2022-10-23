@@ -1,0 +1,58 @@
+# Initialization
+units			real
+dimension		3
+processors		* * *
+boundary		p p p
+atom_style		full
+pair_style		lj/cut 10.0
+bond_style		harmonic
+angle_style 	harmonic
+read_data		after_cross_linking_correct.data
+
+#output 
+
+# going from 100-170 in steps of 10
+
+thermo			100
+thermo_style	custom step temp vol density
+
+
+# npt for 150ps
+
+fix			1 all npt temp 373 373 1000 iso 1 1 100
+run			150000
+unfix			1
+
+fix			1 all npt temp 383 383 1000 iso 1 1 100
+run			150000
+unfix			1
+
+fix			1 all npt temp 393 393 1000 iso 1 1 100
+run			150000
+unfix			1
+
+fix			1 all npt temp 403 403 1000 iso 1 1 100
+run			150000
+unfix			1
+
+fix			1 all npt temp 413 413 1000 iso 1 1 100
+run			150000
+unfix			1
+
+fix			1 all npt temp 423 423 1000 iso 1 1 100
+run			150000
+unfix			1
+
+fix			1 all npt temp 433 433 1000 iso 1 1 100
+run			150000
+unfix			1
+
+fix			1 all npt temp 443 443 1000 iso 1 1 100
+run			150000
+unfix			1
+
+#final 
+write_data		thermal_expansion_after_glass_transition_3.data
+
+#parameter
+neighbor		2.0 bin
