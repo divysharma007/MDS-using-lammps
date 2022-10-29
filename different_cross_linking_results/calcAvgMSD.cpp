@@ -1,8 +1,4 @@
-#include<iostream>
-#include<iomanip>
-#include<fstream>
-#include<math.h>
-
+#include<bits/stdc++.h>
 using namespace::std ;
 
 const long Na = 20 ;
@@ -15,34 +11,42 @@ int main (int argc, char *argv[]){
 	ofstream avgMsdStream ;
 	
 	long atomID ;
-	int atomType ;
-	double MSDsum = 0.0 ;
+	int atomType,cnt=0 ;
+	double MSDsum = 0.0,xcor,ycor,zcor ;
 	static double x[Na][Nt], y[Na][Nt], z[Na][Nt], avgMSD[Nt] ;
+
 	
-	avgMsdStream.open("avgMSD.dat", ios::out) ;
+	avgMsdStream.open("avgMSD_no_link_1.dat", ios::out) ;
 	
-	trajStream.open("MSD_run_linked.lammpstrj", ios::in) ;
+	trajStream.open("MSD_run_no_link.lammpstrj", ios::in) ;
 	
 	for(long i=0 ; i<Nt ; i++) {
 	
 		for(int j=0 ; j<9 ; j++) trajStream.ignore(10000,'\n') ;
-	
+		map<long, vector<double>> mp;
 		for(long j=0 ; j<Na ; j++) {
 			
-			trajStream>>atomType>>atomID>>x[j][i]>>y[j][i]>>z[j][i] ;
+			trajStream>>atomType>>atomID>>xcor>>ycor>>zcor;
+			mp[atomID]={xcor,ycor,zcor};
 			trajStream.ignore(10000,'\n') ;
 			
 		}
+		cnt = 0;
+		for(auto val:mp){
+			x[cnt][i] = val.second[0];
+			y[cnt][i] = val.second[1];
+			z[cnt][i] = val.second[2];
+			cnt++;
+			//cout<<"mp "<<val.first<<" "<<val.second[0]<<" "<<val.second[1]<<" "<<val.second[2]<<endl;
+		}
+
 	}
-	
+
 	trajStream.close() ;
 	
 	avgMSD[0] = 0.0 ;
 	
 	for(long i = 1 ; i < Nt ; i++) {
-	
-	if(i< 10000 && i%100 == 0) cout<<"\nCalculating MSD for time step "<<i*dt<<" ps ..."<<endl ;
-	else if(i >= 10000 && i%1000 == 0) cout<<"\nCalculating MSD for time step "<<i*dt<<" ps ..."<<endl ;
 	
 		for (long k = 0 ; k < (Nt-i) ; k++) {
 		
@@ -55,9 +59,12 @@ int main (int argc, char *argv[]){
 			}	
 	
 		}
-	
-	avgMSD[i] = MSDsum/(((double)Na)*((double)(Nt-i))) ;
+
+		avgMSD[i] = MSDsum/(((double)Na)*((double)(Nt-i))) ;
 	MSDsum = 0.0 ;
+		if(i< 10000 && i%100 == 0) cout<<"\nCalculating MSD for time step "<<i*dt<<" ps ..."<<" MSD is "<<avgMSD[i]<<endl ;
+	else if(i >= 10000 && i%1000 == 0) cout<<"\nCalculating MSD for time step "<<i*dt<<" ps ..."<<" MSD is "<<avgMSD[i]<<endl ;
+
 	
 	}
 	

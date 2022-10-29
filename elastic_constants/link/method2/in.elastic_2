@@ -1,0 +1,196 @@
+# Setup output
+units			real
+dimension		3
+processors		* * *
+boundary		p p p
+atom_style		full
+pair_style		lj/cut 10.0
+bond_style		harmonic
+angle_style 	harmonic
+read_data		after_cross_linking_correct.data
+
+variable        nsteps index 100000    # length of run
+variable        nthermo index  100    # thermo output interval 
+variable        T    equal 300         # Temperature in K
+
+variable kb        equal 1.38065e-23 
+variable at2Pa     equal 101325
+variable Myvol     equal "vol*10^-30" 
+variable kcalmol2J equal "4183.9954/(6.022e23)"
+variable kbt       equal "v_kb*v_T"
+variable Nat       equal atoms
+variable Rhokbt    equal "v_kbt*v_Nat/v_Myvol"
+variable C1        equal "v_kcalmol2J/v_Myvol"
+variable C2        equal "v_Myvol/v_kbt" 
+variable Pa2GPa    equal 1e-9
+
+# Stress fluctuation term F
+
+compute stress all pressure NULL virial
+variable s1 equal "-c_stress[1]*v_at2Pa"
+variable s2 equal "-c_stress[2]*v_at2Pa"
+variable s3 equal "-c_stress[3]*v_at2Pa"
+variable s4 equal "-c_stress[6]*v_at2Pa"
+variable s5 equal "-c_stress[5]*v_at2Pa"
+variable s6 equal "-c_stress[4]*v_at2Pa"
+
+variable s11 equal v_s1*v_s1
+variable s22 equal v_s2*v_s2
+variable s33 equal v_s3*v_s3
+variable s44 equal v_s4*v_s4
+variable s55 equal v_s5*v_s5
+variable s66 equal v_s6*v_s6
+variable s33 equal v_s3*v_s3
+variable s12 equal v_s1*v_s2
+variable s13 equal v_s1*v_s3
+variable s14 equal v_s1*v_s4
+variable s15 equal v_s1*v_s5
+variable s16 equal v_s1*v_s6
+variable s23 equal v_s2*v_s3
+variable s24 equal v_s2*v_s4
+variable s25 equal v_s2*v_s5
+variable s26 equal v_s2*v_s6
+variable s34 equal v_s3*v_s4
+variable s35 equal v_s3*v_s5
+variable s36 equal v_s3*v_s6
+variable s45 equal v_s4*v_s5
+variable s46 equal v_s4*v_s6
+variable s56 equal v_s5*v_s6
+
+variable mytemp equal temp
+variable mypress equal press
+variable mype equal pe/atoms
+
+fix avs all ave/time 1 ${nthermo} ${nthermo} v_s1 v_s2 v_s3 v_s4 v_s5 v_s6 ave running
+fix avssq all ave/time 1 ${nthermo} ${nthermo} &
+v_s11 v_s22 v_s33 v_s44 v_s55 v_s66 &
+v_s12 v_s13 v_s14 v_s15 v_s16 &
+v_s23 v_s24 v_s25 v_s26 &
+v_s34 v_s35 v_s36 &
+v_s45 v_s46 &
+v_s56 &
+ave running
+
+compute     born all born/matrix numdiff 1e-6 stress
+fix 	    avborn all ave/time 1 ${nthermo} ${nthermo} c_born[*] ave running
+
+thermo      ${nthermo}
+thermo_style    custom step temp press  c_born[1] f_avborn[1] c_born[12] f_avborn[12] c_born[4] f_avborn[4]
+thermo_modify line multi
+
+fix     1 all nvt temp $T $T 100
+
+run         ${nsteps}
+
+# atm to GPa
+variable ffac equal ${C2}
+
+variable F11 equal -(f_avssq[1]-f_avs[1]*f_avs[1])*${ffac}
+variable F22 equal -(f_avssq[2]-f_avs[2]*f_avs[2])*${ffac}
+variable F33 equal -(f_avssq[3]-f_avs[3]*f_avs[3])*${ffac}
+variable F44 equal -(f_avssq[4]-f_avs[4]*f_avs[4])*${ffac}
+variable F55 equal -(f_avssq[5]-f_avs[5]*f_avs[5])*${ffac}
+variable F66 equal -(f_avssq[6]-f_avs[6]*f_avs[6])*${ffac}
+
+variable F12 equal -(f_avssq[7]-f_avs[1]*f_avs[2])*${ffac}
+variable F13 equal -(f_avssq[8]-f_avs[1]*f_avs[3])*${ffac}
+variable F14 equal -(f_avssq[9]-f_avs[1]*f_avs[4])*${ffac}
+variable F15 equal -(f_avssq[10]-f_avs[1]*f_avs[5])*${ffac}
+variable F16 equal -(f_avssq[11]-f_avs[1]*f_avs[6])*${ffac}
+
+variable F23 equal -(f_avssq[12]-f_avs[2]*f_avs[3])*${ffac}
+variable F24 equal -(f_avssq[13]-f_avs[2]*f_avs[4])*${ffac}
+variable F25 equal -(f_avssq[14]-f_avs[2]*f_avs[5])*${ffac}
+variable F26 equal -(f_avssq[15]-f_avs[2]*f_avs[6])*${ffac}
+
+variable F34 equal -(f_avssq[16]-f_avs[3]*f_avs[4])*${ffac}
+variable F35 equal -(f_avssq[17]-f_avs[3]*f_avs[5])*${ffac}
+variable F36 equal -(f_avssq[18]-f_avs[3]*f_avs[6])*${ffac}
+
+variable F45 equal -(f_avssq[19]-f_avs[4]*f_avs[5])*${ffac}
+variable F46 equal -(f_avssq[20]-f_avs[4]*f_avs[6])*${ffac}
+
+variable F56 equal -(f_avssq[21]-f_avs[5]*f_avs[6])*${ffac}
+
+# Born term
+
+# compute     virial all pressure NULL virial stress==virial
+
+
+# variable bfac equal ${pconv}/vol
+variable B vector f_avborn*${C1}
+
+# Kinetic term
+
+variable kfac equal ${Rhokbt} #atoms*${boltz}*${temp}/vol
+variable K11 equal 2.0*${kfac}
+variable K22 equal 2.0*${kfac}
+variable K33 equal 2.0*${kfac}
+variable K44 equal ${kfac}
+variable K55 equal ${kfac}
+variable K66 equal ${kfac}
+
+# Add F, K, and B together
+
+variable C11 equal v_F11+v_B[1]+v_K11
+variable C22 equal v_F22+v_B[2]+v_K22
+variable C33 equal v_F33+v_B[3]+v_K33
+variable C44 equal v_F44+v_B[4]+v_K44
+variable C55 equal v_F55+v_B[5]+v_K55
+variable C66 equal v_F66+v_B[6]+v_K66
+
+variable C12 equal v_F12+v_B[7] 
+variable C13 equal v_F13+v_B[8] 
+variable C14 equal v_F14+v_B[9] 
+variable C15 equal v_F15+v_B[10]
+variable C16 equal v_F16+v_B[11]
+
+variable C23 equal v_F23+v_B[12] 
+variable C24 equal v_F24+v_B[13] 
+variable C25 equal v_F25+v_B[14]
+variable C26 equal v_F26+v_B[15]
+
+variable C34 equal v_F34+v_B[16]
+variable C35 equal v_F35+v_B[17]
+variable C36 equal v_F36+v_B[18]
+
+variable C45 equal v_F45+v_B[19]
+variable C46 equal v_F46+v_B[20]
+
+variable C56 equal v_F56+v_B[21]
+
+variable aC11 equal "(v_C11 + v_C22 + v_C33)/3."
+variable aC12 equal "(v_C12 + v_C13 + v_C23)/3."
+variable aC44 equal "(v_C44 + v_C55 + v_C66)/3."
+
+
+
+print """
+C11 = ${C11}
+C12 = ${C12}
+C13 = ${C13}
+C14 = ${C14}
+C15 = ${C15}
+C16 = ${C16}
+C22 = ${C22}
+C23 = ${C23}
+C24 = ${C24}
+C25 = ${C25}
+C26 = ${C26}
+C33 = ${C33}
+C34 = ${C34}
+C35 = ${C35}
+C36 = ${C36}
+C44 = ${C44}
+C45 = ${C45}
+C46 = ${C46}
+C55 = ${C55}
+C56 = ${C56}
+C66 = ${C66}
+"""
+print """
+Average-
+aC11 = ${aC11}
+aC12 = ${aC12}
+aC44 = ${aC44}
+"""

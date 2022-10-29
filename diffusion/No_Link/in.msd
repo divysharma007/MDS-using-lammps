@@ -14,6 +14,7 @@ group O2 type 9
 compute         msd O2 msd
 fix             val O2 vector 100 c_msd[4]
 variable        fitslope equal slope(f_val)
+dump			1 O2 custom 100 MSD_no_link_win.lammpstrj type id xu yu zu
 thermo			100
 thermo_style	custom step c_msd[4] v_fitslope
 timestep 1
@@ -24,7 +25,7 @@ run			10000000
 unfix			1
 
 #final 
-write_data		PVA4_O10_MSD.data
+write_data		PVA4_O10_MSD_2.data
 
 #parameter
 neighbor		2.0 bin
