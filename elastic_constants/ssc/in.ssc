@@ -24,10 +24,11 @@ variable   Vol equal "vol*1e-30"
 compute peratom all stress/atom NULL
 compute fx all reduce sum &
  c_peratom[1] c_peratom[2] c_peratom[3] 
+ 
 
 ##---------------DEFORMATION--------------------------------------
 #fix		1 all npt temp 300 300 1 y 0 0 1 z 0 0 1 drag 2
-variable   srate equal 1.0e10
+variable   srate equal 1.0e13
 variable   srate1 equal "v_srate / 1.0e15"
 variable   conv equal 101325e-9
 fix        2 all ave/time 1 100 100 c_fx[1] c_fx[2] c_fx[3]
@@ -43,5 +44,5 @@ thermo 	100
 thermo_style custom step v_strain v_sigmavolume v_sigmaxx v_avg_sigmaxx lx vol pxx
 
 
-run            50000
+run            200000
 

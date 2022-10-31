@@ -1,3 +1,4 @@
+log MSD_no_link.lammps
 # Initialization
 units			real
 dimension		3
@@ -8,7 +9,6 @@ pair_style		lj/cut 10.0
 bond_style		harmonic
 angle_style 	harmonic
 read_data		PVA4_O10_equilibrated.data
-
 #output
 group O2 type 9
 compute         msd O2 msd

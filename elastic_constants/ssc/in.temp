@@ -1,4 +1,4 @@
-
+log temp.lammps
 units			real
 dimension		3
 processors		* * *
@@ -29,7 +29,7 @@ thermo_style	custom step temp v_p2 pxx lx v_strain
 thermo          100
 timestep	1
 reset_timestep	0
-run		50000
+run		1000000
 unfix 1
 unfix 2
 unfix def1
