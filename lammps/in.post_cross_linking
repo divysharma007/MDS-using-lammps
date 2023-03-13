@@ -1,4 +1,5 @@
 # Initialization
+log postlinking_density.lammps
 units			real
 dimension		3
 processors		* * *
@@ -12,8 +13,8 @@ read_data		crosslinked.data
 #output
 
 thermo			100
-thermo_style	custom step temp pe press vol lx density
-dump			1 all custom 100 after_cross_linking_2.lammpstrj id type x y z
+thermo_style	custom step temp density
+
 
 #intial minimization
 minimize		1.0e-5 1.0e-5 10000 10000

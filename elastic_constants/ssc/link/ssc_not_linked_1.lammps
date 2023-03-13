@@ -1,0 +1,84 @@
+units			real
+dimension		3
+processors		* * *
+boundary		p p p
+atom_style		full
+pair_style		lj/cut 10.0
+bond_style		harmonic
+angle_style 	harmonic
+read_data		after_cross_linking_correct.data
+Reading data file ...
+  orthogonal box = (30.222448 27.307948 30.19145) to (59.884552 56.970052 59.853554)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  2988 atoms
+  reading velocities ...
+  2988 velocities
+  scanning bonds ...
+  4 = max bonds/atom
+  scanning angles ...
+  6 = max angles/atom
+  reading bonds ...
+  3044 bonds
+  reading angles ...
+  5800 angles
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0       
+  special bond factors coul:  0        0        0       
+     4 = max # of 1-2 neighbors
+     7 = max # of 1-3 neighbors
+    16 = max # of 1-4 neighbors
+    20 = max # of special neighbors
+  special bonds CPU = 0.005 seconds
+  read_data CPU = 0.086 seconds
+variable simname index ssc_not_linked_1
+variable tmp equal "lx"
+variable L0 equal ${tmp}
+variable L0 equal 29.6621039368179
+variable strain equal "(lx - v_L0)/v_L0"
+variable p1 equal "v_strain"
+variable p2 equal "-pxx/10000*1.01325"
+variable p3 equal "-pyy/10000*1.01325"
+variable p4 equal "-pzz/10000*1.01325"
+variable p5 equal "lx"
+variable p6 equal "ly"
+variable p7 equal "lz"
+variable p8 equal "temp"
+fix		1 all npt temp 300 300 50 y 1 1 100 z 1 1 100
+fix		2 all deform 1 x erate 1e-5 units box remap x
+fix        3 all ave/time 1 100 100 v_p2 v_p3
+variable avg_stress equal f_3[1]
+fix def1 all print 100 "${p1} ${p2} ${avg_stress}" file ${simname}.txt screen no
+fix def1 all print 100 "${p1} ${p2} ${avg_stress}" file ssc_not_linked_1.txt screen no
+thermo_style	custom step temp v_p2 v_avg_stress lx ly lz vol v_strain pxx
+thermo          100
+timestep	1
+run		100000
+Generated 153 of 153 mixed pair_coeff terms from geometric mixing rule
+Last active /omp style is angle_style harmonic/omp
+Neighbor list info ...
+  update every 1 steps, delay 10 steps, check yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 12
+  ghost atom cutoff = 12
+  binsize = 6, bins = 5 5 5
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/cut/omp, perpetual
+      attributes: half, newton on, omp
+      pair build: half/bin/newton/omp
+      stencil: half/bin/3d
+      bin: standard
+WARNING: Inconsistent image flags (src/domain.cpp:819)
+Per MPI rank memory allocation (min/avg/max) = 27.41 | 27.41 | 27.41 Mbytes
+   Step          Temp           v_p2       v_avg_stress        Lx             Ly             Lz           Volume        v_strain         Pxx      
+         0   296.64116     -0.28038351     0              29.662104      29.662104      29.662104      26097.918      5.9886407e-16  2767.1701    
+       100   304.17026     -0.21527043     0.069636908    29.691766      29.599472      29.485774      25913.885      0.001          2124.554     
+       200   300.72577     -0.041595085   -0.024796255    29.721428      29.648387      29.56556       26052.947      0.002          410.51158    
+       300   296.78447     -0.044067559   -0.0067411854   29.75109       29.692165      29.524493      26081.177      0.003          434.91299    
+       400   299.4154       0.37106285     0.027961221    29.780752      29.82535       29.281247      26008.229      0.004         -3662.1056    
+       500   296.07999      0.25106057     0.040062325    29.810414      29.809842      29.23695       25981.233      0.005         -2477.7752    
+       600   297.39801      0.24092257     0.065243179    29.840077      29.871381      29.429001      26231.961      0.006         -2377.7209    
+       700   303.7149       0.13619546    -0.006998249    29.869739      29.873076      29.417352      26249.132      0.007         -1344.1447    
+       800   299.75749      0.52138488     0.09258761     29.899401      29.906951      29.42417       26311.091      0.008         -5145.6687    
+       900   293.10636      0.14528272     0.10383697     29.929063      29.860253      29.31484       26198.361      0.009         -1433.829     
+      1000   303.96565      0.31496568     0.12859253     29.958725      29.908526      29.21519       26177.433      0.01          -3108.4696    
