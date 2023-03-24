@@ -1,0 +1,122 @@
+LAMMPS (15 Sep 2022)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (src/comm.cpp:98)
+  using 1 OpenMP thread(s) per MPI task
+Loaded 1 plugins from C:\Users\HP\AppData\Local\LAMMPS 64-bit 15Sep2022\plugins
+# Initialization
+units			real
+dimension		3
+processors		* * *
+boundary		p p p
+atom_style		full
+pair_style		lj/cut 10
+bond_style		none
+angle_style 	none
+
+
+
+read_data		topo_linking.data
+Reading data file ...
+  orthogonal box = (0.001722 0.00652 -0.002365) to (32.957384 32.962182 32.953297)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  3596 atoms
+  scanning bonds ...
+  4 = max bonds/atom
+  scanning angles ...
+  6 = max angles/atom
+  scanning dihedrals ...
+  12 = max dihedrals/atom
+  reading bonds ...
+  3605 bonds
+  reading angles ...
+  6733 angles
+  reading dihedrals ...
+  10611 dihedrals
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0       
+  special bond factors coul:  0        0        0       
+     4 = max # of 1-2 neighbors
+     7 = max # of 1-3 neighbors
+    16 = max # of 1-4 neighbors
+    20 = max # of special neighbors
+  special bonds CPU = 0.004 seconds
+  read_data CPU = 0.106 seconds
+labelmap atom 1 A1 2 A2
+labelmap write la
+pair_coeff * * 1.0 1.0
+group 1 type 16 17
+93 atoms in group 1
+delete_atoms group 1
+WARNING: Ignoring 'compress yes' for molecular system (src/delete_atoms.cpp:140)
+Deleted 93 atoms, new total = 3503
+run 2
+WARNING: No fixes with time integration, atoms won't move (src/verlet.cpp:60)
+Generated 0 of 276 mixed pair_coeff terms from geometric mixing rule
+WARNING: Bonds are defined but no bond style is set (src/force.cpp:193)
+WARNING: Likewise 1-2 special neighbor interactions != 1.0 (src/force.cpp:195)
+WARNING: Angles are defined but no angle style is set (src/force.cpp:198)
+WARNING: Likewise 1-3 special neighbor interactions != 1.0 (src/force.cpp:200)
+WARNING: Dihedrals are defined but no dihedral style is set (src/force.cpp:203)
+WARNING: Likewise 1-4 special neighbor interactions != 1.0 (src/force.cpp:205)
+Neighbor list info ...
+  update: every = 1 steps, delay = 10 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 12
+  ghost atom cutoff = 12
+  binsize = 6, bins = 6 6 6
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/cut, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton
+      stencil: half/bin/3d
+      bin: standard
+WARNING: Inconsistent image flags (src/domain.cpp:819)
+WARNING: Bond/angle/dihedral extent > half of periodic box length (src/domain.cpp:940)
+Per MPI rank memory allocation (min/avg/max) = 31 | 31 | 31 Mbytes
+   Step          Temp          E_pair         E_mol          TotEng         Press     
+         0   0             -159.84987      0             -159.84987     -610.63891    
+         2   0             -159.84987      0             -159.84987     -610.63891    
+WARNING: Bond/angle/dihedral extent > half of periodic box length (src/domain.cpp:940)
+Loop time of 0.03966 on 1 procs for 2 steps with 3503 atoms
+
+Performance: 4.357 ns/day, 5.508 hours/ns, 50.429 timesteps/s
+78.8% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.038997   | 0.038997   | 0.038997   |   0.0 | 98.33
+Bond    | 1e-06      | 1e-06      | 1e-06      |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0.000264   | 0.000264   | 0.000264   |   0.0 |  0.67
+Output  | 0.00025    | 0.00025    | 0.00025    |   0.0 |  0.63
+Modify  | 1.3e-05    | 1.3e-05    | 1.3e-05    |   0.0 |  0.03
+Other   |            | 0.000135   |            |       |  0.34
+
+Nlocal:           3503 ave        3503 max        3503 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:          14795 ave       14795 max       14795 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    1.22759e+06 ave 1.22759e+06 max 1.22759e+06 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 1227591
+Ave neighs/atom = 350.43991
+Ave special neighs/atom = 11.952041
+Neighbor list builds = 0
+Dangerous builds = 0
+#final
+write_data		linked.data
+System init for write_data ...
+Generated 0 of 276 mixed pair_coeff terms from geometric mixing rule
+WARNING: Bonds are defined but no bond style is set (src/force.cpp:193)
+WARNING: Likewise 1-2 special neighbor interactions != 1.0 (src/force.cpp:195)
+WARNING: Angles are defined but no angle style is set (src/force.cpp:198)
+WARNING: Likewise 1-3 special neighbor interactions != 1.0 (src/force.cpp:200)
+WARNING: Dihedrals are defined but no dihedral style is set (src/force.cpp:203)
+WARNING: Likewise 1-4 special neighbor interactions != 1.0 (src/force.cpp:205)
+WARNING: Not all mixed pair coeffs generated from mixing. Use write_data with 'pair ij' option to store all pair coeffs. (src/write_data.cpp:326)
+
+#parameter
+neighbor		2.0 bin
+Total wall time: 0:00:00

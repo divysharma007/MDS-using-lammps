@@ -1,0 +1,24 @@
+# Initialization
+units			real
+dimension		3
+processors		* * *
+boundary		p p p
+atom_style		full
+pair_style		lj/cut 10
+bond_style		none
+angle_style 	none
+
+
+
+read_data		topo_linking.data 
+labelmap atom 1 A1 2 A2
+labelmap write la
+pair_coeff * * 1.0 1.0
+group 1 type 16 17
+delete_atoms group 1
+run 2
+#final 
+write_data		linked.data 
+
+#parameter
+neighbor		2.0 bin
