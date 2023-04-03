@@ -7,7 +7,8 @@ atom_style		full
 pair_style		lj/cut 10.0
 bond_style		harmonic
 angle_style 	harmonic
-read_data		pre_cross_linking.data
+dihedral_style harmonic
+read_data		PVA_GA_NC_INPUT_WITH_DIHEDRALS.data
 
 #output
 
@@ -19,7 +20,7 @@ run 0
 unfix 1
 
 #final 
-write_data		qeq.data
+write_data		PVA_GA_NC_DIHEDRALS_INPUT_WITH_CHARGE.data
 
 #parameter
 neighbor		2.0 bin
