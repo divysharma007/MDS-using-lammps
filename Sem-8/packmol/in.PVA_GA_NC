@@ -1,0 +1,16 @@
+tolerance 3.5
+output PVA_GA_NC_Connects_trial_post.pdb
+filetype pdb
+
+structure Polyvinylalcohol.pdb
+  number 8
+  inside cube 0. 0. 0. 180.
+end structure
+structure Glutaraldehyde.pdb
+  number 40
+  inside cube 0. 0. 0. 180.
+end structure
+structure Nanocluster_SiO2_d2nm_noConect.pdb
+  number 2
+  inside cube 0. 0. 0. 180.
+end structure
