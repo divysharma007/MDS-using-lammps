@@ -8,7 +8,7 @@ pair_style		lj/cut 10.0
 bond_style		harmonic
 angle_style 	harmonic
 dihedral_style harmonic
-read_data		PVA_GA_NC_INPUT_WITH_DIHEDRALS.data
+read_data		PVA_GA_NC_OXY_LARGE_DIHEDRALS.data
 
 #output
 
@@ -20,7 +20,7 @@ run 0
 unfix 1
 
 #final 
-write_data		PVA_GA_NC_DIHEDRALS_INPUT_WITH_CHARGE.data
+write_data		PVA_GA_NC_OXY_LARGE_DIHEDRALS_INPUT_WITH_CHARGE.data
 
 #parameter
 neighbor		2.0 bin

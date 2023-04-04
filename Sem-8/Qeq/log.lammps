@@ -12,12 +12,12 @@ pair_style		lj/cut 10.0
 bond_style		harmonic
 angle_style 	harmonic
 dihedral_style harmonic
-read_data		PVA_GA_NC_INPUT_WITH_DIHEDRALS.data
+read_data		PVA_GA_NC_OXY_LARGE_DIHEDRALS.data
 Reading data file ...
-  orthogonal box = (0.1945 -0.043001 0.018501) to (90.1945 89.956999 90.018501)
+  orthogonal box = (-0.134997 1.224001 -0.414498) to (179.865 181.224 179.5855)
   1 by 1 by 1 MPI processor grid
   reading atoms ...
-  3596 atoms
+  6664 atoms
   scanning bonds ...
   4 = max bonds/atom
   scanning angles ...
@@ -25,11 +25,11 @@ Reading data file ...
   scanning dihedrals ...
   12 = max dihedrals/atom
   reading bonds ...
-  3632 bonds
+  6620 bonds
   reading angles ...
-  6624 angles
+  12056 angles
   reading dihedrals ...
-  10296 dihedrals
+  18888 dihedrals
 Finding 1-2 1-3 1-4 neighbors ...
   special bond factors lj:    0        0        0       
   special bond factors coul:  0        0        0       
@@ -37,8 +37,8 @@ Finding 1-2 1-3 1-4 neighbors ...
      7 = max # of 1-3 neighbors
     16 = max # of 1-4 neighbors
     20 = max # of special neighbors
-  special bonds CPU = 0.004 seconds
-  read_data CPU = 0.102 seconds
+  special bonds CPU = 0.006 seconds
+  read_data CPU = 0.175 seconds
 
 #output
 
@@ -54,7 +54,7 @@ Neighbor list info ...
   max neighbors/atom: 2000, page size: 100000
   master list distance cutoff = 12
   ghost atom cutoff = 12
-  binsize = 6, bins = 15 15 15
+  binsize = 6, bins = 30 30 30
   2 neighbor lists, perpetual/occasional/extra = 2 0 0
   (1) pair lj/cut, perpetual, half/full from (2)
       attributes: half, newton on
@@ -66,10 +66,10 @@ Neighbor list info ...
       pair build: full/bin
       stencil: full/bin/3d
       bin: standard
-Per MPI rank memory allocation (min/avg/max) = 23.72 | 23.72 | 23.72 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 26.76 | 26.76 | 26.76 Mbytes
    Step          Temp          PotEng         Press          Volume           Lx          Density    
-         0   0              29654.54      -2121.1784      729000         90             0.06203364   
-Loop time of 1e-06 on 1 procs for 0 steps with 3596 atoms
+         0   0              40430.189      267.17948      5832000        180            0.01301734   
+Loop time of 1e-06 on 1 procs for 0 steps with 6664 atoms
 
 0.0% CPU use with 1 MPI tasks x 1 OpenMP threads
 
@@ -84,24 +84,24 @@ Output  | 0          | 0          | 0          |   0.0 |  0.00
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
 Other   |            | 1e-06      |            |       |100.00
 
-Nlocal:           3596 ave        3596 max        3596 min
+Nlocal:           6664 ave        6664 max        6664 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:           2392 ave        2392 max        2392 min
+Nghost:            785 ave         785 max         785 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:         195415 ave      195415 max      195415 min
+Neighs:         250454 ave      250454 max      250454 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs:       390830 ave      390830 max      390830 min
+FullNghs:       500908 ave      500908 max      500908 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 390830
-Ave neighs/atom = 108.68465
-Ave special neighs/atom = 11.430478
+Total # of neighbors = 500908
+Ave neighs/atom = 75.166267
+Ave special neighs/atom = 11.273709
 Neighbor list builds = 0
 Dangerous builds = 0
 unfix 1
 
 #final
-write_data		PVA_GA_NC_DIHEDRALS_INPUT_WITH_CHARGE.data
+write_data		PVA_GA_NC_OXY_LARGE_DIHEDRALS_INPUT_WITH_CHARGE.data
 System init for write_data ...
 Generated 136 of 136 mixed pair_coeff terms from geometric mixing rule
 Neighbor list info ...
@@ -109,7 +109,7 @@ Neighbor list info ...
   max neighbors/atom: 2000, page size: 100000
   master list distance cutoff = 12
   ghost atom cutoff = 12
-  binsize = 6, bins = 15 15 15
+  binsize = 6, bins = 30 30 30
   1 neighbor lists, perpetual/occasional/extra = 1 0 0
   (1) pair lj/cut, perpetual
       attributes: half, newton on
