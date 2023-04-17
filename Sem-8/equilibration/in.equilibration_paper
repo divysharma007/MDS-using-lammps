@@ -1,0 +1,85 @@
+# Initialization
+units			real
+dimension		3
+processors		* * *
+boundary		p p p
+atom_style		full
+pair_style		lj/cut/coul/cut 10.0
+bond_style		harmonic
+angle_style 	harmonic
+dihedral_style  harmonic
+read_data		PVA_GA_NC_OXY_LARGE_DIHEDRALS_INPUT_WITH_CHARGE.data
+
+#output
+
+thermo			100
+thermo_style	custom step temp pe press vol lx density
+#dump			1 all custom 100 before_cross_linking.lammpstrj id type x y z
+timestep 1
+
+#initial minimization
+minimize                1.0e-5 1.0e-5 10000 10000
+
+#Intial compression from 0 to 1000 atm
+fix                     1 all npt temp 300.0 300.0 100.0 iso 0.0 1000.0 1000.0
+#restart                         50000 initialcompression.restart
+run                     50000
+unfix             1
+
+#second minimization
+minimize                 1.0e-5 1.0e-5 10000 10000
+
+
+#Compression from 0 to 4000 atm
+fix                              1 all npt temp 300.0 300.0 100.0 iso 0.0 4000.0 1000.0
+run                              250000
+unfix 1
+
+#NpT MD at 4000 atm
+fix                              1 all npt temp 300.0 300.0 100.0 iso 4000.0 4000.0 1000.0
+run                              200000
+unfix 1
+
+#Decompression from 4000 to 1 atm
+fix                              1 all npt temp 300.0 300.0 100.0 iso 4000.0 1.0 1000.0
+run                              300000
+unfix 1
+
+#Heating from 300 K to 500 K at 1 atm
+fix                              1 all npt temp 300.0 500.0 100.0 iso 1.0 1.0 1000.0
+run                              200000
+unfix 1
+
+#NpT Cooling from 500 K to 300 K at 1 atm
+fix                              1 all npt temp 500.0 300.0 100.0 iso 1.0 1.0 1000.0
+run                              200000
+unfix 1
+
+#Compression from 1 to 4000 atm
+fix                              1 all npt temp 300.0 300.0 100.0 iso 1.0 4000.0 1000.0
+run                              150000
+unfix 1
+
+#Decompression from 4000 to 1 atm
+fix                              1 all npt temp 300.0 300.0 100.0 iso 4000.0 1.0 1000.0
+run                              150000
+unfix 1
+
+#NVT equilibration at 300 K
+fix                     2 all nvt temp 300.0 300.0 100.0
+#restart                         50000 NVT500.restart
+run                     400000
+unfix           2
+
+#NpT equilibration at 300 K, 1 atm
+fix                             5 all npt temp 300.0 300.0 100.0 iso 1.0 1.0 1000.0
+#restart                         10000 NpT300.restart
+run                     600000
+unfix             5
+
+
+#final 
+write_data		PVA_GA_NC_OXY_LARGE_DIHEDRALS_INPUT_WITH_CHARGE_EQUILIBRATED_BEFORE_LINKING.data
+
+#parameter
+neighbor		2.0 bin
