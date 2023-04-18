@@ -43,7 +43,7 @@ void updateAtoms()
         s1 = entries[8];
         s2 = entries[9];
 
-        //if(type==10)
+        if(type==10)
             charge = 0;
         atomsOutputFile <<atomNo<< " " <<sec<< " " <<type<< " " <<charge<< " " <<x<< " " <<y<< " " <<z<< " " <<hash<< " " <<s1<< " " <<s2<< endl;
     }
