@@ -21,14 +21,14 @@ fix             val O2 vector 100 c_msd[4]
 # First nano particle 6217:6420
 group         NP_1   id   6217:6420
 compute     msdNP_1 NP_1 msd
-fix        5 NP_1 ave/time 1 1 100 c_msdNP_1[4] file msddumpfile_msdNP_1
-unfix 5
+fix        AVE_MSD_NP1 NP_1 ave/time 1 1 100 c_msdNP_1[4] file msddumpfile_msdNP_1
+
 
 # Second nano particle 6421:6624
 group         NP_2   id   6421:6624
 compute     msdNP_2 NP_2 msd
-fix        5 NP_2 ave/time 1 1 100 c_msdNP_2[4] file msddumpfile_msdNP_2
-unfix 5
+fix        AVE_MSD_NP2 NP_2 ave/time 1 1 100 c_msdNP_2[4] file msddumpfile_msdNP_2
+
 
 
 #output
