@@ -1,0 +1,16 @@
+tolerance 3.5
+output PVA_NC_H2O_large.pdb
+filetype pdb
+
+structure Polyvinylalcohol.pdb
+  number 8
+  inside cube 0. 0. 0. 180.
+end structure
+structure Nanocluster_SiO2_d14A_noConect.pdb
+  number 2
+  inside cube 0. 0. 0. 180.
+end structure
+structure water1.pdb
+  number 20
+  inside cube 0. 0. 0. 180.
+end structure

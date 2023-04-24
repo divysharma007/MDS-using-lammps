@@ -8,7 +8,7 @@ pair_style		lj/cut 10.0
 bond_style		harmonic
 angle_style 	harmonic
 dihedral_style harmonic
-read_data		PVA_NP_OXY.data
+read_data		PVA_NP_H2O.data
 
 #output
 
@@ -20,7 +20,7 @@ run 0
 unfix 1
 
 #final 
-write_data		PVA_NP_OXY_INPUT_WITH_CHARGE.data
+write_data		PVA_NP_H2O_INPUT_WITH_CHARGE.data
 
 #parameter
 neighbor		2.0 bin
