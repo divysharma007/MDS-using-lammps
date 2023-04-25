@@ -1,5 +1,5 @@
 tolerance 3.5
-output PVA_GA_NC_OXY_large_prev.pdb
+output PVA_GA_NC_H20.pdb
 filetype pdb
 
 structure Polyvinylalcohol.pdb
@@ -14,7 +14,7 @@ structure Nanocluster_SiO2_d14A_noConect.pdb
   number 2
   inside cube 0. 0. 0. 180.
 end structure
-structure oxygen.pdb
+structure water1.pdb
   number 20
   inside cube 0. 0. 0. 180.
 end structure

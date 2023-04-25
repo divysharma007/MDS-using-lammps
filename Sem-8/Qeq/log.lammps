@@ -12,12 +12,12 @@ pair_style		lj/cut 10.0
 bond_style		harmonic
 angle_style 	harmonic
 dihedral_style harmonic
-read_data		PVA_NP_H2O.data
+read_data		PVA_GA_NP_H2O.data
 Reading data file ...
-  orthogonal box = (-8.456496 2.851498 -0.849498) to (171.5435 182.8515 179.1505)
+  orthogonal box = (0.608005 -0.152998 -0.414498) to (180.608 179.847 179.5855)
   1 by 1 by 1 MPI processor grid
   reading atoms ...
-  6084 atoms
+  6684 atoms
   scanning bonds ...
   4 = max bonds/atom
   scanning angles ...
@@ -25,11 +25,11 @@ Reading data file ...
   scanning dihedrals ...
   12 = max dihedrals/atom
   reading bonds ...
-  6080 bonds
+  6640 bonds
   reading angles ...
-  11116 angles
+  12076 angles
   reading dihedrals ...
-  17688 dihedrals
+  18888 dihedrals
 Finding 1-2 1-3 1-4 neighbors ...
   special bond factors lj:    0        0        0       
   special bond factors coul:  0        0        0       
@@ -38,17 +38,17 @@ Finding 1-2 1-3 1-4 neighbors ...
     16 = max # of 1-4 neighbors
     20 = max # of special neighbors
   special bonds CPU = 0.005 seconds
-  read_data CPU = 0.158 seconds
+  read_data CPU = 0.179 seconds
 
 #output
 
 thermo			100
 thermo_style	custom step temp pe press vol lx density
 
-fix 1 all qeq/point 1 100 1.0e-6 200 param.qeq
+fix 1 all qeq/point 1 100 1.0e-6 200 param2.qeq
 run 0
 WARNING: No fixes with time integration, atoms won't move (src/verlet.cpp:60)
-Generated 91 of 91 mixed pair_coeff terms from geometric mixing rule
+Generated 153 of 153 mixed pair_coeff terms from geometric mixing rule
 Neighbor list info ...
   update: every = 1 steps, delay = 10 steps, check = yes
   max neighbors/atom: 2000, page size: 100000
@@ -66,10 +66,10 @@ Neighbor list info ...
       pair build: full/bin
       stencil: full/bin/3d
       bin: standard
-Per MPI rank memory allocation (min/avg/max) = 26.62 | 26.62 | 26.62 Mbytes
+Per MPI rank memory allocation (min/avg/max) = 26.28 | 26.28 | 26.28 Mbytes
    Step          Temp          PotEng         Press          Volume           Lx          Density    
-         0   0              16505.185     -673.65878      5832000        180            0.011797478  
-Loop time of 1e-06 on 1 procs for 0 steps with 6084 atoms
+         0   0              16537.963     -667.38925      5832000        180            0.012937713  
+Loop time of 1e-06 on 1 procs for 0 steps with 6684 atoms
 
 0.0% CPU use with 1 MPI tasks x 1 OpenMP threads
 
@@ -84,26 +84,26 @@ Output  | 0          | 0          | 0          |   0.0 |  0.00
 Modify  | 0          | 0          | 0          |   0.0 |  0.00
 Other   |            | 1e-06      |            |       |100.00
 
-Nlocal:           6084 ave        6084 max        6084 min
+Nlocal:           6684 ave        6684 max        6684 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Nghost:            123 ave         123 max         123 min
+Nghost:           1198 ave        1198 max        1198 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-Neighs:         248363 ave      248363 max      248363 min
+Neighs:         243893 ave      243893 max      243893 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
-FullNghs:       496726 ave      496726 max      496726 min
+FullNghs:       487786 ave      487786 max      487786 min
 Histogram: 1 0 0 0 0 0 0 0 0 0
 
-Total # of neighbors = 496726
-Ave neighs/atom = 81.644642
-Ave special neighs/atom = 11.467456
+Total # of neighbors = 487786
+Ave neighs/atom = 72.978157
+Ave special neighs/atom = 11.251945
 Neighbor list builds = 0
 Dangerous builds = 0
 unfix 1
 
 #final
-write_data		PVA_NP_H2O_INPUT_WITH_CHARGE.data
+write_data		PVA_GA_NP_H2O_INPUT_WITH_CHARGE.data
 System init for write_data ...
-Generated 91 of 91 mixed pair_coeff terms from geometric mixing rule
+Generated 153 of 153 mixed pair_coeff terms from geometric mixing rule
 Neighbor list info ...
   update: every = 1 steps, delay = 10 steps, check = yes
   max neighbors/atom: 2000, page size: 100000

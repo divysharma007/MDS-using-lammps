@@ -8,7 +8,7 @@ pair_style		lj/cut/coul/cut 10.0
 bond_style		harmonic
 angle_style 	harmonic
 dihedral_style  harmonic
-read_data		PVA_NP_H2O_INPUT_WITH_CHARGE.data
+read_data		PVA_GA_NP_H2O_INPUT_WITH_CHARGE.data
 
 #output
 
@@ -79,7 +79,7 @@ unfix             5
 
 
 #final 
-write_data		PVA_NP_H2O_EQUILIBRATED_WITH_CHARGE.data
+write_data		PVA_GP_NP_H2O_EQUILIBRATED_WITH_CHARGE.data
 
 #parameter
 neighbor		2.0 bin
