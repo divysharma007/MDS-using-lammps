@@ -10,12 +10,12 @@ angle_style 	harmonic
 dihedral_style harmonic
 
 
-read_data		PVA_GA_NC_OXY_LARGE_DIHEDRALS_INPUT_WITH_CHARGE_AFTER_LINKING_WITH_WATER.data 
-group 1 type 23 24
+read_data		PVA_GA_NP_H2O_INPUT_WITH_CHARGE_AFTER_LINKING_WITH_WATER.data 
+group 1 type 24 25
 delete_atoms group 1
 run 0
 #final 
-write_data		PVA_GA_NC_OXY_LARGE_DIHEDRALS_INPUT_WITH_CHARGE_AFTER_LINKING.data 
+write_data		PVA_GA_NP_H2O_INPUT_WITH_CHARGE_AFTER_LINKING.data
 
 #parameter
 neighbor		2.0 bin

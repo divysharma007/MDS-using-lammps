@@ -14,7 +14,7 @@ read_data		PVA_NP_H2O_EQUILIBRATED_WITH_CHARGE.data
 
 timestep 1
 
-group  water type 11 6
+group  water type 11
 compute         msd water msd
 fix             val water vector 100 c_msd[4]
 

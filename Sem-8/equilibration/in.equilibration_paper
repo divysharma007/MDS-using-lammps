@@ -79,7 +79,7 @@ unfix             5
 
 
 #final 
-write_data		PVA_GP_NP_H2O_EQUILIBRATED_WITH_CHARGE.data
+write_data		PVA_GA_NP_H2O_EQUILIBRATED_WITH_CHARGE.data
 
 #parameter
 neighbor		2.0 bin

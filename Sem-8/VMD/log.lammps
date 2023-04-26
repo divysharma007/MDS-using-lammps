@@ -14,6 +14,89 @@ angle_style 	harmonic
 dihedral_style harmonic
 
 
-read_data		PVA_GA_NC_OXY_LARGE_DIHEDRALS_INPUT_WITH_CHARGE_AFTER_LINKING_WITH_WATER.data
-ERROR: Cannot open file PVA_GA_NC_OXY_LARGE_DIHEDRALS_INPUT_WITH_CHARGE_AFTER_LINKING_WITH_WATER.data: No such file or directory (src/read_data.cpp:366)
-Last command: read_data		PVA_GA_NC_OXY_LARGE_DIHEDRALS_INPUT_WITH_CHARGE_AFTER_LINKING_WITH_WATER.data
+read_data		PVA_GA_NP_H2O_INPUT_WITH_CHARGE_AFTER_LINKING_WITH_WATER.data
+Reading data file ...
+  orthogonal box = (0.004165 -0.002475 -0.002881) to (39.17781 39.17117 39.170764)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+  6684 atoms
+  scanning bonds ...
+  4 = max bonds/atom
+  scanning angles ...
+  6 = max angles/atom
+  scanning dihedrals ...
+  12 = max dihedrals/atom
+  reading bonds ...
+  6594 bonds
+  reading angles ...
+  12319 angles
+  reading dihedrals ...
+  19572 dihedrals
+Finding 1-2 1-3 1-4 neighbors ...
+  special bond factors lj:    0        0        0       
+  special bond factors coul:  0        0        0       
+     4 = max # of 1-2 neighbors
+     7 = max # of 1-3 neighbors
+    16 = max # of 1-4 neighbors
+    20 = max # of special neighbors
+  special bonds CPU = 0.007 seconds
+  read_data CPU = 0.171 seconds
+group 1 type 24 25
+183 atoms in group 1
+delete_atoms group 1
+WARNING: Ignoring 'compress yes' for molecular system (src/delete_atoms.cpp:140)
+Deleted 183 atoms, new total = 6501
+run 0
+WARNING: No fixes with time integration, atoms won't move (src/verlet.cpp:60)
+Generated 300 of 300 mixed pair_coeff terms from geometric mixing rule
+Neighbor list info ...
+  update: every = 1 steps, delay = 10 steps, check = yes
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 12
+  ghost atom cutoff = 12
+  binsize = 6, bins = 7 7 7
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/cut/coul/cut, perpetual
+      attributes: half, newton on
+      pair build: half/bin/newton
+      stencil: half/bin/3d
+      bin: standard
+WARNING: Inconsistent image flags (src/domain.cpp:819)
+Per MPI rank memory allocation (min/avg/max) = 36.61 | 36.61 | 36.61 Mbytes
+   Step          Temp          E_pair         E_mol          TotEng         Press     
+         0   0             -3530.8487      576183.45      572652.61     -607858.79    
+Loop time of 1e-06 on 1 procs for 0 steps with 6501 atoms
+
+0.0% CPU use with 1 MPI tasks x 1 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0          | 0          | 0          |   0.0 |  0.00
+Bond    | 0          | 0          | 0          |   0.0 |  0.00
+Neigh   | 0          | 0          | 0          |   0.0 |  0.00
+Comm    | 0          | 0          | 0          |   0.0 |  0.00
+Output  | 0          | 0          | 0          |   0.0 |  0.00
+Modify  | 0          | 0          | 0          |   0.0 |  0.00
+Other   |            | 1e-06      |            |       |100.00
+
+Nlocal:           6501 ave        6501 max        6501 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Nghost:          20753 ave       20753 max       20753 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+Neighs:    2.50756e+06 ave 2.50756e+06 max 2.50756e+06 min
+Histogram: 1 0 0 0 0 0 0 0 0 0
+
+Total # of neighbors = 2507564
+Ave neighs/atom = 385.71974
+Ave special neighs/atom = 11.821258
+Neighbor list builds = 0
+Dangerous builds = 0
+#final
+write_data		PVA_GA_NP_H2O_INPUT_WITH_CHARGE_AFTER_LINKING.data
+System init for write_data ...
+Generated 300 of 300 mixed pair_coeff terms from geometric mixing rule
+
+#parameter
+neighbor		2.0 bin
+Total wall time: 0:00:00
