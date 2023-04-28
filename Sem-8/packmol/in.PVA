@@ -1,8 +1,0 @@
-tolerance 3.5
-output PVA_small.pdb
-filetype pdb
-
-structure Polyvinylalcohol.pdb
-  number 4
-  inside cube 0. 0. 0. 90.
-end structure

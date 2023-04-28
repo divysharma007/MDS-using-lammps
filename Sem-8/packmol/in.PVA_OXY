@@ -1,0 +1,12 @@
+tolerance 3.5
+output PVA_OXY_large.pdb
+filetype pdb
+
+structure Polyvinylalcohol.pdb
+  number 8
+  inside cube 0. 0. 0. 180.
+end structure
+structure oxygen.pdb
+  number 20
+  inside cube 0. 0. 0. 180.
+end structure

@@ -43,10 +43,9 @@ void updateAtoms()
         s1 = entries[8];
         s2 = entries[9];
 
-        if(type==11)
-            charge = -0.834;
-        if (type == 6)
-            charge = 0.417;
+        if(type==9)
+            charge = 0;
+
         atomsOutputFile <<atomNo<< " " <<sec<< " " <<type<< " " <<charge<< " " <<x<< " " <<y<< " " <<z<< " " <<hash<< " " <<s1<< " " <<s2<< endl;
     }
     atomsFile.close();
