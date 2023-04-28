@@ -146,7 +146,7 @@ for {set i 0} {$i < $num15} {incr i} {
                     set BA1_type [$BA1 get type]
                     set BA2_type [$BA2 get type]   
                     set OH2 -1
-                    if {$BA1_type == "8"} {
+                    if {$BA1_type == "9"} {
         set OH2 $bonded_atom1
     } else {
         set OH2 $bonded_atom2
